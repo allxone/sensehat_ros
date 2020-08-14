@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# Copyright 2020, Stefano Dell'Orto
+# License: BSD
+#   https://raw.githubusercontent.com/allxone/sensehat_ros/master/LICENSE
+#
+# sense_play (sense_emu utility) starts a pre-recorded trace from a real Sense HAT, simulating real data coming from the hardware to support node tests
+
+# execution is scheduled only if no other sense_play instances are running and if SENSEHAT_ROS_EMU_GUI!=1 
+if [ ${SENSEHAT_ROS_EMU_GUI:-0} -eq 1 ];then
+    echo "Skipping hardware trace replay"
+else
+    echo "Starting hardware trace replay ..."
+    sense_play $1
+fi

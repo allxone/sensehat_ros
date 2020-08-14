@@ -1,0 +1,12 @@
+sensehat_ros:
+  rotation: 0
+  low_light: True
+  smoothing: 5
+  environmental_publishing: True
+  environmental_publishing_rate: 12
+  imu_publishing: True
+  imu_publishing_rate: 1
+  imu_publishing_mode: "get_orientation_degrees_rpy"
+  imu_publishing_config: "1|1|1"
+  stick_publishing: True
+  stick_sampling: 0.2  

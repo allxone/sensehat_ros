@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+#
+# Copyright 2020, Stefano Dell'Orto
+# License: BSD
+#   https://raw.githubusercontent.com/allxone/sensehat_ros/master/LICENSE
+#
+"""sensehat_ros ROS node"""
+
+import rospy
+from sensehat_ros.host import Host
+
+if __name__ == '__main__':
+
+    node = 'sensehat_ros'
+
+    # Init node
+    rospy.init_node(node, anonymous=True)
+    
+    # Create sensor host
+    s = Host(
+        **rospy.get_param(node)
+    )
+    
+    # Start publishing
+    try:
+        s.run()
+    except rospy.ROSInterruptException:
+        pass

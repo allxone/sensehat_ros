@@ -1,0 +1,13 @@
+language: generic
+services:
+  - docker
+env:
+  global:
+    - CODE_COVERAGE="codecov.io"
+  matrix:
+    - ROS_DISTRO="melodic" ADDITIONAL_DEBS="python-pip"
+    - ROS_DISTRO="noetic" ADDITIONAL_DEBS="python3-pip"
+install:
+  - git clone --quiet --depth 1 https://github.com/ros-industrial/industrial_ci.git .industrial_ci -b master
+script:
+  - .industrial_ci/travis.sh

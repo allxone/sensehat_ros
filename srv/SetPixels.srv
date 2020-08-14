@@ -1,0 +1,5 @@
+int16[64] pixels_red
+int16[64] pixels_green
+int16[64] pixels_blue
+float64 duration
+---

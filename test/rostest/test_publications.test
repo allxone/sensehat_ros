@@ -1,0 +1,15 @@
+<launch>
+    <node pkg="sensehat_ros" type="sense_play" name="sense_play" args="$(find sensehat_ros)/test/resources/experiment1-060-steady.hat" />
+    <node pkg="sensehat_ros" type="sensehat_ros" name="sensehat_ros">
+        <param name="stick_publishing" type="bool" value="true" />
+        <param name="stick_sampling" type="double" value="0.2" />
+        <param name="environmental_publishing" type="bool" value="true" />
+        <param name="environmental_publishing_rate" type="int" value="1" />
+        <param name="imu_publishing" type="bool" value="true" />
+        <param name="imu_publishing_mode" type="string" value="get_orientation_degrees_rpy" />
+        <param name="imu_publishing_rate" type="int" value="1" />
+        <param name="imu_publishing_config" type="string" value="1|1|1" />
+        <param name="register_services" type="bool" value="true" />
+    </node>
+    <test test-name="test_publications" pkg="sensehat_ros" type="test_publications" />
+</launch>

@@ -1,0 +1,10 @@
+<launch>
+    <node pkg="sensehat_ros" type="sense_play" name="sense_play" args="$(find sensehat_ros)/test/resources/experiment1-060-steady.hat" />
+    <node pkg="sensehat_ros" type="sensehat_ros" name="sensehat_ros">
+        <param name="stick_publishing" type="bool" value="false" />
+        <param name="environmental_publishing" type="bool" value="false" />
+        <param name="imu_publishing" type="bool" value="false" />
+        <param name="register_services" type="bool" value="true" />
+    </node>
+    <test test-name="test_services" pkg="sensehat_ros" type="test_services" />
+</launch>

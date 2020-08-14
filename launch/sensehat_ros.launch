@@ -1,0 +1,8 @@
+<launch>
+    <arg name="DEBUG" default="False" />
+    <env name="ROS_PYTHON_LOG_CONFIG_FILE"
+       value="$(find sensehat_ros)/config/python_logging_debug.conf"
+       if="$(arg DEBUG)" />
+    <rosparam file="$(find sensehat_ros)/config/sensehat_ros.yaml" command="load"/> 
+    <node pkg="sensehat_ros" type="sensehat_ros" name="sensehat_ros" respawn="true"/>
+</launch>

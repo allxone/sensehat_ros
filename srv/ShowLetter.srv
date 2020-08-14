@@ -1,0 +1,5 @@
+string text
+int16[3] text_colour
+int16[3] back_colour
+float64 duration
+---

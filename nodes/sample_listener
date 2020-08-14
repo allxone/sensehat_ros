@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+#
+# Copyright 2020, Stefano Dell'Orto
+# License: BSD
+#   https://raw.githubusercontent.com/allxone/sensehat_ros/master/LICENSE
+#
+
+"""Sample client to listen on topic published by sensehat_ros."""
+
+import rospy
+from sensehat_ros.msg import Stick, Environmental, IMU
+
+def environmental_callback(data):
+    rospy.loginfo("Heard Environmental (H: %s, TH: %s, TP: %s, P: %s)",
+        data.humidity,
+        data.temperature_from_humidity,
+        data.temperature_from_pressure,
+        data.pressure)
+
+def imu_callback(data):
+    rospy.loginfo("Heard IMU (Mode: %s, X: %s, Y: %s, Z: %s)",
+        data.mode,
+        data.x,
+        data.y,
+        data.z)
+
+def stick_callback(data):
+    rospy.loginfo("Heard Stick (D: %s, A: %s)",
+        data.direction,
+        data.action)
+
+def listener():
+    rospy.init_node('listener', anonymous=True)
+    rospy.Subscriber("Stick", Stick, stick_callback)
+    rospy.Subscriber("Environmental", Environmental, environmental_callback)
+    rospy.Subscriber("IMU", IMU, imu_callback)
+    rospy.spin()
+
+if __name__ == '__main__':
+    listener()

@@ -1,0 +1,131 @@
+#!/usr/bin/env python
+#
+# Copyright 2020, Stefano Dell'Orto
+# License: BSD
+#   https://raw.githubusercontent.com/allxone/sensehat_ros/master/LICENSE
+#
+from __future__ import print_function
+PKG='sensehat_ros'
+
+# Level 2: ROS node unit test
+# (cfr. http://wiki.ros.org/action/show/Quality/Tutorials/UnitTesting)
+# Test uses simulation via sense_emu (required)
+
+import sys
+import unittest
+import rospy
+import random
+from colorsys import hsv_to_rgb
+
+from sensehat_ros.msg import Environmental, IMU, Stick
+from sensehat_ros.srv import EmulateStick
+from sensehat_ros.host import Host
+
+
+class TestHostPublications(unittest.TestCase):
+    def _valid_humidity(self, data):
+        return (0 <= data <= 100)
+    def _valid_temperature(self, data):
+        return (-40 <= data <= 120)
+    def _valid_pressure(self, data):
+        return (260 <= data <= 1260)
+    def _valid_degree(self, data):
+        return (0 <= data <= 360)
+
+
+    def testStickPublishing(self):
+        """Test Stick Events publishing. Stick events are emulated via the dedicated service"""
+
+        self.data = {"stick": []}
+
+        rospy.wait_for_service('EmulateStick')
+        emulateStick = rospy.ServiceProxy('EmulateStick', EmulateStick)
+
+        rospy.init_node('listener', anonymous=True)
+        rospy.Subscriber("Stick", Stick, self.stick_callback)
+        rospy.sleep(5.)
+
+        emulateStick("up", "pressed")
+        emulateStick("up", "released")
+
+        rospy.sleep(5.)
+
+        # Check: received at least one message
+        self.assertGreater(len(self.data["stick"]), 0, "0 Stick messages received")
+
+        # Check Stick data
+        data = self.data["stick"][0]
+        self.assertIn(data.direction, ["up", "down", "left", "right", "middle"])
+        self.assertIn(data.action, ["pressed", "released", "held"])
+
+
+    def testEnvironmentalPublishing(self):
+        """Test environmental data publishing"""
+
+        self.data = {"environmental": []}
+
+        rospy.init_node('listener', anonymous=True)
+        rospy.Subscriber("Environmental", Environmental, self.environmental_callback)
+
+        rospy.sleep(5.)
+
+        # Check: received at least one message
+        self.assertGreater(len(self.data["environmental"]), 0, "0 Environmental messages received")
+
+        # Check Environmental data
+        data = self.data["environmental"][0]
+        self.assertTrue(self._valid_humidity(data.humidity))
+        self.assertTrue(self._valid_temperature(data.temperature_from_humidity))
+        self.assertTrue(self._valid_temperature(data.temperature_from_pressure))
+        self.assertTrue(self._valid_pressure(data.pressure))
+
+
+    def testIMUPublishing(self):
+        """Test IMU data publishing"""
+
+        self.data = {"imu": []}
+
+        rospy.init_node('listener', anonymous=True)
+        rospy.Subscriber("IMU", IMU, self.imu_callback)
+
+        rospy.sleep(10.)
+
+        # Check: received at least one message
+        self.assertGreater(len(self.data["imu"]), 0, "0 IMU messages received")
+
+        # Check IMU data
+        data = self.data["imu"][0]
+        self.assertEqual(data.mode, "get_orientation_degrees_rpy")
+        self.assertTrue(self._valid_degree(data.x))
+        self.assertTrue(self._valid_degree(data.y))
+        self.assertTrue(self._valid_degree(data.z))
+
+
+    def stick_callback(self, data):
+        self.data["stick"].append(data)
+        rospy.loginfo(rospy.get_caller_id() + "I heard (D: %s, A: %s)",
+            data.direction,
+            data.action)
+
+
+    def environmental_callback(self, data):
+        self.data["environmental"].append(data)
+        rospy.loginfo(rospy.get_caller_id() + "I heard (H: %s, TH: %s, TP: %s, P: %s)",
+            data.humidity,
+            data.temperature_from_humidity,
+            data.temperature_from_pressure,
+            data.pressure)
+
+
+    def imu_callback(self, data):
+        self.data["imu"].append(data)
+        rospy.loginfo(rospy.get_caller_id() + "I heard (Mode: %s, X: %s, Y: %s, Z: %s)",
+            data.mode,
+            data.x,
+            data.y,
+            data.z)
+
+
+if __name__ == '__main__':
+    import rostest
+    rostest.rosrun(PKG, "TestHostPublications", TestHostPublications, sys.argv)

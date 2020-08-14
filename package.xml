@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<?xml-model
+  href="http://download.ros.org/schema/package_format3.xsd"
+  schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>sensehat_ros</name>
+  <version>0.1.0</version>
+  <description>sensehat_ros is a ROS package to publish Astro Pi Sense HAT environmental and IMU sensors data, stick events and provide access to led matrix primitives.</description>
+  
+  <author email="allxone@hotmail.com">Stefano Dell'Orto</author>
+  <license>BSD</license>
+  <maintainer email="allxone@hotmail.com">Stefano Dell'Orto</maintainer>
+
+  <url type="website">http://wiki.ros.org/sensehat_ros</url>
+  <url type="repository">http://www.github.com/allxone/sensehat_ros</url>
+  <url type="bugtracker">http://www.github.com/allxone/sensehat_ros/issues</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend condition="$ROS_PYTHON_VERSION == 2">python-setuptools</buildtool_depend>
+  <buildtool_depend condition="$ROS_PYTHON_VERSION == 3">python3-setuptools</buildtool_depend>
+  <buildtool_depend condition="$ROS_PYTHON_VERSION == 2">python-catkin-pkg</buildtool_depend>
+  <buildtool_depend condition="$ROS_PYTHON_VERSION == 3">python3-catkin-pkg</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_depend>roslaunch</build_depend>
+  <build_depend condition="$ROS_PYTHON_VERSION == 2">python-catkin-pkg</build_depend><!-- sphinx requirement -->
+  <build_depend condition="$ROS_PYTHON_VERSION == 3">python3-catkin-pkg</build_depend><!-- sphinx requirement -->
+
+  <build_export_depend>message_runtime</build_export_depend>
+
+  <test_depend>rostest</test_depend>
+  <test_depend>rosunit</test_depend>
+  <test_depend condition="$ROS_PYTHON_VERSION == 2">python-mock</test_depend>
+  <test_depend>python3-sense-emu-pip</test_depend>
+
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>python3-sense-hat-pip</exec_depend>
+
+  <export>
+    <architecture_independent />
+    <rosdoc config="rosdoc.yaml"/>    
+  </export>
+
+</package>

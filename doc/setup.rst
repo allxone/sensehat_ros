@@ -3,7 +3,7 @@ Setup
 The **sensehat_ros** package is intended to be installed on a Raspberry PI device equipped with an 
 Astro Pi `Sense HAT`_ module and with a supported ROS distro.
 
-Binary release is WIP so the package should be built and installed from source by `catkin`.
+Binary release is WIP so the package should be built and installed from source.
 
 .. _`Sense HAT`: https://www.raspberrypi.org/products/sense-hat/
 
@@ -57,6 +57,5 @@ Once the package has been built, it can be installed with che catkin command
 
 .. code-block:: bash
 
-    $ source devel/setup.bash
     $ catkin_make install
     $ source install/setup.bash

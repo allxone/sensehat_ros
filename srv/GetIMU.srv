@@ -1,3 +1,4 @@
+# queries Sense HAT IMU sensor. Warning: not allowed when imu_publishing=True due to potential set_imu_config interference
 string mode
 ---
 IMU imu

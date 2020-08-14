@@ -1,3 +1,4 @@
+# shows a letter on the LED matrix and waits for the specified amount of seconds
 string text
 int16[3] text_colour
 int16[3] back_colour

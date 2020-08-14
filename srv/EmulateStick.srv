@@ -1,3 +1,4 @@
+# remotely triggers a stick event without interacting with the Stick device
 string direction
 string action
 ---

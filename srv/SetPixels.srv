@@ -1,3 +1,4 @@
+# sets each of the 64 LED matrix pixels to a specific RGB color and waits for the specified amount of seconds
 int16[64] pixels_red
 int16[64] pixels_green
 int16[64] pixels_blue

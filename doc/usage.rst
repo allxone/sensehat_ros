@@ -70,7 +70,7 @@ Triggering the joystick on the device or the emulator should be immediately mirr
 
 Examples
 --------
-The package includes two sample nodes to show how to call services interactively or consume messages from topics.
+The package includes two sample client nodes to show how to call services interactively or consume messages from topics.
 
 .. code-block:: bash
 

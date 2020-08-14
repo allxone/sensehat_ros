@@ -1,2 +1,3 @@
+# gets the direction of North from the magnetometer in degrees. Warning: not allowed when imu_publishing=True due to potential set_imu_config interference
 ---
 float64 compass

@@ -14,6 +14,7 @@ Overview
 .. image:: images/sense_hat.jpg
     :width: 400
     :align: center
+    :target: https://www.raspberrypi.org/products/sense-hat/
 
 The **sensehat_ros** ROS package helps integrating the Astro Pi `Sense HAT`_ sensor module with the ROS  
 ecosystem.

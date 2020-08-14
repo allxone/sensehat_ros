@@ -1,2 +1,3 @@
+# switches on/off the LED matrix “low light” mode and returns the current state
 ---
 bool low_light

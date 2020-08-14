@@ -1,3 +1,4 @@
+# sets all of the 64 LED matrix pixels to the specified RGB color and waits for the specified amount of seconds
 int16[3] colour
 float64 duration
 ---

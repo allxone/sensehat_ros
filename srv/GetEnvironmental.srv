@@ -1,2 +1,3 @@
+# gets the current humidity and temperature from the humidity sensor and temperature and pressure from the pressure sensor
 ---
 Environmental environmental

@@ -1,3 +1,4 @@
+# scrolls a text message from right to left across the LED matrix and at the specified speed, in the specified colour and background colour
 string text
 float64 scroll_speed
 int16[3] text_colour

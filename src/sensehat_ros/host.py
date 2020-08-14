@@ -28,26 +28,26 @@ class Host(object):
     :type rotation: int, optional
     :param low_light: enable Sense HAT low-light mode. Defaults to False.
     :type low_light: bool, optional
-    :param calibration: linear fixing for environmental readings (ex. ). Defaults to {}.
+    :param calibration: linear fixing for environmental readings (ex. {"humidity": -20.0} ). Defaults to {}.
     :type calibration: dict, optional
-    :param smoothing: number of obsersavations to be used for median smoothing (0 = smoothing disabled). Smoothing is applied only to environmental data (humidity, temperature and pressure). Defaults to 0.
+    :param smoothing: number of observations to be used for median smoothing (0 = smoothing disabled). Smoothing is applied only to environmental data (humidity, temperature and pressure). Defaults to 0.
     :type smoothing: int, optional
-    :param register_services: control ROS services registration. Defaults to 0.
+    :param register_services: control ROS services registration. Defaults to True.
     :type register_services: bool, optional
     :param environmental_publishing: enable automatic publishing of environmental data (rate controlled by environmental_publishing_rate). Defaults to True.
     :type environmental_publishing: bool, optional
-    :param environmental_publishing_rate: Environmental publication frequency in seconds. Defaults to 12 (5 times a minute).
-    :type environmental_publishing_rate: int, optional
+    :param environmental_publishing_rate: environmental data publication frequency in seconds. Defaults to 12 (5 times a minute).
+    :type environmental_publishing_rate: float, optional
     :param imu_publishing: enable automatic publishing of IMU data (rate controlled by imu_publishing_rate). Defaults to False.
     :type imu_publishing: bool, optional
     :param imu_publishing_mode: specify the Sense HAT API function to be used to get x,y,z/roll,pitch,yaw. Valid values are: get_orientation_radians_rpy, get_orientation_degrees_rpy, get_compass_raw_xyz, get_gyroscope_rpy, get_gyroscope_raw_xyz, get_accelerometer_rpy, get_compass_raw_xyz. Defaults to get_orientation_degrees_rpy.
     :type imu_publishing_mode: string, optional
-    :param imu_publishing_rate: IMU publication frequency in seconds. Defaults to 1 (once a second).
-    :type imu_publishing_rate: int, optional
+    :param imu_publishing_rate: IMU data publication frequency in seconds. Defaults to 1 (once a second).
+    :type imu_publishing_rate: float, optional
     :param stick_publishing: enable automatic publishing of stick events. Defaults to True.
     :type stick_publishing: bool, optional
     :param stick_sampling: indicates how frequently the Stick is checked for new events. Defaults to 0.2 (5 times a second).
-    :type stick_sampling: int, optional
+    :type stick_sampling: float, optional
     """
 
     def __init__(self,
@@ -247,14 +247,14 @@ class Host(object):
 
 
     def switchLowLight(self, req):
-        """ROS service: switches on/off the LED matrix \"low light\" mode and returns the current state"""
+        """ROS service: switches on/off the LED matrix \"low light\" mode and returns the current state."""
 
         self.sense.low_light = not self.sense.low_light
         return SwitchLowLightResponse(low_light = self.sense.low_light)
 
 
     def setPixels(self, req):
-        """ROS service: sets each of the 64 LED matrix pixels to a specific RGB color and waits for the specified amount of seconds"""
+        """ROS service: sets each of the 64 LED matrix pixels to a specific RGB color and waits for the specified amount of seconds."""
 
         self.display_lock.acquire()
         try:

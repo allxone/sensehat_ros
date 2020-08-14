@@ -1,2 +1,3 @@
+# gets the percentage of relative humidity from the humidity sensor
 ---
 float64 humidity

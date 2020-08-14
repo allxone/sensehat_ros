@@ -18,7 +18,7 @@ Overview
 The **sensehat_ros** ROS package helps integrating the Astro Pi `Sense HAT`_ sensor module with the ROS  
 ecosystem.
 Stick events together with environmental and IMU sensors data are published to ROS topics.
-Several ROS services are exposed to interact with the device, including interaction with the LED matrix.
+Several ROS services are exposed to interact with the device sensors and with the LED matrix.
 
 Please, follow the official Sense HAT `Python API`_ documentation to get a better picture of the device capabilities.
 

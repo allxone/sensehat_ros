@@ -1,5 +1,5 @@
 # sensehat_ros [![Build Status](https://travis-ci.org/allxone/sensehat_ros.svg?branch=master)](https://travis-ci.org/allxone/sensehat_ros) [![codecov](https://codecov.io/gh/allxone/sensehat_ros/branch/master/graph/badge.svg)](https://codecov.io/gh/allxone/sensehat_ros)
-sensehat_ros is a ROS package to publish Astro Pi Sense HAT environmental and IMU sensors data, stick events and provide access to led matrix primitives.
+sensehat_ros is a ROS package to interact with Astro Pi Sense HAT sensors, stick and LED matrix.
 
 The current master branch works with ROS Melodic and Kinetic.
 

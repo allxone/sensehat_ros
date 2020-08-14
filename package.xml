@@ -5,7 +5,7 @@
 <package format="3">
   <name>sensehat_ros</name>
   <version>0.1.0</version>
-  <description>sensehat_ros is a ROS package to publish Astro Pi Sense HAT environmental and IMU sensors data, stick events and provide access to led matrix primitives.</description>
+  <description>sensehat_ros is a ROS package to interact with Astro Pi Sense HAT sensors, stick and LED matrix.</description>
   
   <author email="allxone@hotmail.com">Stefano Dell'Orto</author>
   <license>BSD</license>

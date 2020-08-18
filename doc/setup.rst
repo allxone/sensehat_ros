@@ -3,7 +3,7 @@ Setup
 The **sensehat_ros** package is intended to be installed on a Raspberry PI device equipped with an 
 Astro Pi `Sense HAT`_ module and with a supported ROS distro.
 
-Binary release is WIP so the package should be built and installed from source.
+Binary release is not an option with pip dependencies in the package.xml, so the package have to be built and installed from source.
 
 .. _`Sense HAT`: https://www.raspberrypi.org/products/sense-hat/
 
